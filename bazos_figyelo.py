@@ -46,9 +46,9 @@ from bs4 import BeautifulSoup
 # =====================================================================
 
 EMAIL = {
-    "kuldo": os.environ.get("GMAIL_USER", ""),
-    "jelszo": os.environ.get("GMAIL_APP_PASSWORD", ""),
-    "cimzett": os.environ.get("EMAIL_TO") or os.environ.get("GMAIL_USER", ""),
+    "kuldo": os.environ.get("GMAIL_USER", "").strip(),
+    "jelszo": "".join(os.environ.get("GMAIL_APP_PASSWORD", "").split()),  # szóközök, sortörések nélkül
+    "cimzett": (os.environ.get("EMAIL_TO") or os.environ.get("GMAIL_USER", "")).strip(),
     "smtp_szerver": "smtp.gmail.com",
     "smtp_port": 465,
 }
@@ -526,6 +526,9 @@ def main():
         sys.exit(1)
 
     if "--teszt-email" in sys.argv:
+        # Ellenőrzés a titkok kiírása nélkül: csak a formátumot nézzük
+        naplo(f"Ellenőrzés: a cím {'rendben' if re.fullmatch(r'[^@\s]+@[^@\s]+\.[a-z]+', EMAIL['kuldo']) else 'HIBÁS'} "
+              f"({EMAIL['kuldo'].split('@')[-1]}), a jelszó {len(EMAIL['jelszo'])} karakter (16 kell)")
         email_kuldes("Bazoš figyelő: teszt", "<p>Ha ezt látod, a levélküldés működik.</p>", "Teszt.")
         naplo("Teszt e-mail elküldve.")
         return
