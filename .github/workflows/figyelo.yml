@@ -1,0 +1,73 @@
+name: Bazos figyelo
+
+on:
+  schedule:
+    # Óránként :17-kor, 5–20 UTC = 6:17–21:17 szlovák téli idő szerint.
+    # (Nem egész órára tesszük, mert a GitHub az egész órás futásokat gyakran kihagyja.)
+    - cron: "17 5-20 * * *"
+  workflow_dispatch:
+    inputs:
+      mod:
+        description: "Mit csináljon?"
+        type: choice
+        default: normal
+        options:
+          - normal
+          - teszt-email
+          - proba
+          - jelentes
+
+permissions:
+  contents: write
+
+concurrency:
+  group: bazos-figyelo
+  cancel-in-progress: false
+
+jobs:
+  figyel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      TZ: Europe/Bratislava
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Csomagok telepítése
+        run: pip install -r requirements.txt
+
+      - name: Bazoš átnézése
+        env:
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+        run: |
+          MOD="${{ github.event.inputs.mod || 'normal' }}"
+          if [ "$MOD" = "teszt-email" ]; then
+            python bazos_figyelo.py --teszt-email
+          elif [ "$MOD" = "proba" ]; then
+            python bazos_figyelo.py --proba
+          elif [ "$MOD" = "jelentes" ]; then
+            python bazos_figyelo.py --jelentes
+          else
+            python bazos_figyelo.py
+          fi
+
+      - name: Állapot és piaci napló mentése
+        if: always()
+        run: |
+          git config user.name "bazos-figyelo"
+          git config user.email "bazos-figyelo@users.noreply.github.com"
+          git add allapot.json piaci_naplo.csv 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "Nincs változás."
+          else
+            git commit -m "Futás $(date -u +'%Y-%m-%d %H:%M') UTC"
+            git pull --rebase --autostash || true
+            git push
+          fi
