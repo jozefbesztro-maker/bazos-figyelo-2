@@ -316,7 +316,9 @@
 "197940710": "2026-11-27",
 "197953068": "2026-11-27",
 "196529883": "2026-11-27",
-"197958284": "2026-11-27"
+"197958284": "2026-11-27",
+"197965513": "2026-11-27",
+"197959522": "2026-11-27"
 },
 "ujlap": {
 "16442239|iphone|xr||128GB|119": "2026-11-26",
@@ -403,7 +405,9 @@
 "19354324|iphone|14|pro max|128GB|400": "2026-11-27",
 "16216654|iphone|15|pro|256GB|470": "2026-11-27",
 "16016658|iphone|14||128GB|350": "2026-11-27",
-"16165231|nintendo switch|oled|200": "2026-11-27"
+"16165231|nintendo switch|oled|200": "2026-11-27",
+"16567595|iphone|17||256GB|750": "2026-11-27",
+"19367140|iphone|15||128GB|315": "2026-11-27"
 },
 "eladok": {
 "16579931": [
@@ -436,7 +440,8 @@
 "197817160",
 "197408215",
 "196977536",
-"196933595"
+"196933595",
+"197965513"
 ],
 "16068016": [
 "196459739"
@@ -1162,6 +1167,9 @@
 ],
 "16097502": [
 "197958284"
+],
+"19367140": [
+"197959522"
 ]
 },
 "referencia": {
@@ -1485,6 +1493,13 @@
 "also": 200,
 "felso": 290,
 "n": 11,
+"datum": "2026-11-27"
+},
+"iphone|17||256GB": {
+"median": 745,
+"also": 680,
+"felso": 870,
+"n": 8,
 "datum": "2026-11-27"
 }
 },
@@ -2816,6 +2831,46 @@
 "surgos": false,
 "ajanlat": false,
 "mikor": "2026-11-27 16:05"
+},
+{
+"termek": "iPhone 17 256GB",
+"cim": "📱 Apple iPhone 17 256GB Levanduľový",
+"url": "https://mobil.bazos.sk/inzerat/197965513/apple-iphone-17-256gb-levandulovy.php",
+"ar": 750,
+"median": 745,
+"n": 8,
+"kedvezmeny": -1,
+"haszon": -5,
+"hely": "Nové Zámky 940 02",
+"datum": "2026-11-27",
+"megj": [
+"akku 100%"
+],
+"kereskedo": false,
+"gyanus": false,
+"surgos": false,
+"ajanlat": false,
+"mikor": "2026-11-27 16:45"
+},
+{
+"termek": "iPhone 15 128GB",
+"cim": "Apple iphone 15 blue 128Gb",
+"url": "https://mobil.bazos.sk/inzerat/197959522/apple-iphone-15-blue-128gb.php",
+"ar": 315,
+"median": 390,
+"n": 17,
+"kedvezmeny": 19,
+"haszon": 75,
+"hely": "Dunajská Streda 929 01",
+"datum": "2026-11-27",
+"megj": [
+"akku 90%"
+],
+"kereskedo": false,
+"gyanus": false,
+"surgos": false,
+"ajanlat": true,
+"mikor": "2026-11-27 16:45"
 }
 ],
 "arazatlan": [
@@ -3261,9 +3316,9 @@
 "ok": "a típus nem derül ki a címből"
 }
 ],
-"utolso_jelentes": "",
+"utolso_jelentes": "2026-11-27",
 "stat": {
-"futas": 2,
-"uj": 86
+"futas": 0,
+"uj": 0
 }
 }
