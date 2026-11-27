@@ -2,9 +2,9 @@ name: Bazos figyelo
 
 on:
   schedule:
-    # Óránként :17-kor, 5–20 UTC = 6:17–21:17 szlovák téli idő szerint.
-    # (Nem egész órára tesszük, mert a GitHub az egész órás futásokat gyakran kihagyja.)
-    - cron: "17 5-20 * * *"
+    # Negyedóránként, 5–20 UTC = kb. 6–21 óra helyi idő szerint. Nyilvános tárolón ingyenes.
+    # (A GitHub sok ütemezett futást kihagy, ezért gyakrabban kérjük; párhuzamosan nem fut kettő.)
+    - cron: "7,22,37,52 5-20 * * *"
   workflow_dispatch:
     inputs:
       mod:
